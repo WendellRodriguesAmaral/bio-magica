@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ThemeService } from '../services/theme.service';
+import { BioService } from '../services/bio-service.service';
 
 @Component({
   selector: 'app-form',
@@ -19,7 +20,7 @@ export class FormComponent implements OnInit {
     { value: 'minimalist', viewValue: 'Minimalista' }
   ];
 
-  constructor(private themeService: ThemeService) {
+  constructor(private themeService: ThemeService, private bioService: BioService) {
     this.isDarkTheme$ = this.themeService.isDarkTheme$();
   }
   
@@ -30,6 +31,9 @@ export class FormComponent implements OnInit {
   // Método placeholder para o botão de geração
   generateBio(): void {
     console.log('Botão de gerar bio clicado');
-    // Funcionalidade será implementada em etapas futuras
+    this.bioService.generateBio('Wendell', 'Desenvolvedor de Software', 'profissional e conciso')
+      .then(response => {
+        console.log('Bio gerada:', response); //alterar
+      });
   }
 }
