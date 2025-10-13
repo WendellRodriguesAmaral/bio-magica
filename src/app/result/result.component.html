@@ -1,0 +1,33 @@
+<div class="result-container">
+  <mat-card class="result-header-card">
+    <mat-card-header>
+      <mat-card-title>Suas bios personalizadas</mat-card-title>
+      <mat-card-subtitle>Escolha a que mais combina com você</mat-card-subtitle>
+    </mat-card-header>
+    
+    <!-- Placeholder para spinner de carregamento (estático) -->
+    <div class="loading-placeholder">
+      <mat-spinner diameter="40" *ngIf="false"></mat-spinner>
+    </div>
+    
+    <!-- Placeholder para mensagens de erro/sucesso -->
+    <div class="message-placeholder">
+      <!-- Conteúdo será adicionado dinamicamente em etapas futuras -->
+    </div>
+  </mat-card>
+
+  <!-- Cards de resultado -->
+  <div class="bio-results">
+    <mat-card *ngFor="let bio of bioResults" class="bio-card">
+      <mat-card-content>
+        <p class="bio-text">{{ bio.text }}</p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-button color="primary" (click)="copyBio(bio.text)">
+          <mat-icon>content_copy</mat-icon>
+          Copiar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

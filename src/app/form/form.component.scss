@@ -1,0 +1,21 @@
+.form-card {
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.bio-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+mat-card-actions {
+  padding: 8px;
+}
+
+button {
+  mat-icon {
+    margin-right: 8px;
+  }
+}

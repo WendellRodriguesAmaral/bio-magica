@@ -1,0 +1,52 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.app-header {
+  text-align: center;
+  padding: 2rem 0;
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #3f51b5;
+  }
+  
+  .app-subtitle {
+    font-size: 1.2rem;
+    color: #666;
+  }
+}
+
+.app-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem 0;
+  
+  @media (min-width: 768px) {
+    flex-direction: row;
+    
+    app-form {
+      flex: 1;
+    }
+    
+    app-result {
+      flex: 1.5;
+    }
+  }
+}
+
+.app-footer {
+  margin-top: 2rem;
+  padding: 1rem 0;
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+}
