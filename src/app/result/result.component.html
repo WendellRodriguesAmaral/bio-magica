@@ -7,7 +7,7 @@
     
     <!-- Placeholder para spinner de carregamento (estático) -->
     <div class="loading-placeholder">
-      <mat-spinner diameter="40" *ngIf="false"></mat-spinner>
+      <mat-spinner diameter="40" color="accent" *ngIf="false"></mat-spinner>
     </div>
     
     <!-- Placeholder para mensagens de erro/sucesso -->
@@ -23,7 +23,7 @@
         <p class="bio-text">{{ bio.text }}</p>
       </mat-card-content>
       <mat-card-actions align="end">
-        <button mat-button color="primary" (click)="copyBio(bio.text)">
+        <button mat-button color="primary" (click)="copyBio(bio.text)" class="copy-button">
           <mat-icon>content_copy</mat-icon>
           Copiar
         </button>

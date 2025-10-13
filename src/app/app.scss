@@ -5,11 +5,25 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.content {
+  padding: 20px;
+  min-height: calc(100vh - 64px);
 }
 
 .app-header {
   text-align: center;
   padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
   
   h1 {
     font-size: 2.5rem;
@@ -20,6 +34,22 @@
   .app-subtitle {
     font-size: 1.2rem;
     color: #666;
+  }
+
+  button {
+    position: absolute;
+    right: 0;
+    top: 2rem;
+  }
+}
+
+// Estilo para o botão de alternância de tema
+button[aria-label="Toggle theme"] {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: rotate(30deg);
   }
 }
 
@@ -49,4 +79,26 @@
   text-align: center;
   color: #666;
   font-size: 0.9rem;
+}
+
+// Transições suaves para mudança de tema
+.dark-theme, :host {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// Estilos específicos para o tema escuro
+:host-context(.dark-theme) {
+  .app-header {
+    h1 {
+      color: #7986cb;
+    }
+    
+    .app-subtitle {
+      color: #bdbdbd;
+    }
+  }
+  
+  .app-footer {
+    color: #bdbdbd;
+  }
 }

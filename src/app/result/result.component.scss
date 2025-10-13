@@ -1,48 +1,96 @@
 .result-container {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  margin: 20px 0;
 }
 
 .result-header-card {
-  margin-bottom: 8px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.loading-placeholder {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
 }
 
 .bio-results {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  
-  @media (min-width: 768px) {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 16px;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
 }
 
 .bio-card {
   height: 100%;
   display: flex;
   flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   
-  mat-card-content {
-    flex-grow: 1;
+  &:hover {
+    transform: translateY(-5px);
   }
 }
 
 .bio-text {
-  font-size: 1rem;
-  line-height: 1.5;
-  color: rgba(0, 0, 0, 0.7);
+  flex-grow: 1;
+  white-space: pre-line;
+  transition: color 0.3s ease;
 }
 
-.loading-placeholder {
-  display: flex;
-  justify-content: center;
-  padding: 16px 0;
+.copy-button {
+  transition: background-color 0.3s ease, color 0.3s ease;
+  
+  &:hover {
+    opacity: 0.9;
+  }
 }
 
 .message-placeholder {
-  min-height: 24px;
-  padding: 8px 0;
+  text-align: center;
+  padding: 20px;
+  transition: color 0.3s ease;
+}
+
+// Estilos específicos para tema escuro
+:host-context(.dark-theme) {
+  .result-header-card {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  }
+
+  .bio-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    
+    &:hover {
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+    }
+  }
+  
+  .bio-text {
+    color: #e0e0e0;
+  }
+  
+  mat-card-title {
+    color: #e0e0e0;
+  }
+  
+  mat-card-subtitle {
+    color: #bdbdbd;
+  }
+  
+  .message-placeholder {
+    color: #bdbdbd;
+  }
+  
+  .copy-button {
+    color: #7986cb;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+  }
+  
+  mat-spinner {
+    ::ng-deep circle {
+      stroke: #7986cb;
+    }
+  }
 }

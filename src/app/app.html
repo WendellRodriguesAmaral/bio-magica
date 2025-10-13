@@ -1,7 +1,10 @@
-<div class="app-container">
+<div class="app-container"  [ngClass]="{'dark-theme': isDarkTheme$ | async}">
   <header class="app-header">
     <h1>BioMágica</h1>
     <p class="app-subtitle">Gere bios personalizadas para suas redes sociais</p>
+     <button mat-icon-button (click)="toggleTheme()" aria-label="Toggle theme">
+      <mat-icon>{{ (isDarkTheme$ | async) ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
   </header>
 
   <main class="app-content">
