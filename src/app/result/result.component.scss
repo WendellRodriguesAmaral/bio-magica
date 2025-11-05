@@ -1,61 +1,72 @@
-.result-container {
-  margin: 20px 0;
+.results-container {
+  margin-top: 2rem;
+  padding: 1rem;
 }
 
-.result-header-card {
-  margin-bottom: 20px;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
-.loading-placeholder {
-  display: flex;
-  justify-content: center;
-  padding: 20px 0;
-}
-
-.bio-results {
+.bio-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  gap: 1rem;
+
+  &--placeholder {
+    mat-card{
+       opacity: .6;
+    font-style: italic;
+    border: dashed 1px #808080b0;
+    box-shadow: none;
+    }
+  }
+}
+
+.result-header-card{
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .bio-card {
   height: 100%;
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.2s ease-in-out;
   
   &:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    opacity: 1 !important;
   }
 }
 
 .bio-text {
+  font-size: 1.1rem;
+  line-height: 1.5;
   flex-grow: 1;
   white-space: pre-line;
-  transition: color 0.3s ease;
 }
 
-.copy-button {
-  transition: background-color 0.3s ease, color 0.3s ease;
-  
-  &:hover {
-    opacity: 0.9;
-  }
+mat-card-actions {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.message-placeholder {
+.no-results {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   text-align: center;
-  padding: 20px;
-  transition: color 0.3s ease;
+  
+  p {
+    font-size: 1.1rem;
+    color: #666;
+  }
 }
 
 // Estilos específicos para tema escuro
 :host-context(.dark-theme) {
-  .result-header-card {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-  }
-
   .bio-card {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     
@@ -68,29 +79,17 @@
     color: #e0e0e0;
   }
   
-  mat-card-title {
-    color: #e0e0e0;
-  }
-  
-  mat-card-subtitle {
+  .no-results p {
     color: #bdbdbd;
   }
-  
-  .message-placeholder {
-    color: #bdbdbd;
+}
+
+@media (max-width: 768px) {
+  .bio-list {
+    grid-template-columns: 1fr;
   }
   
-  .copy-button {
-    color: #7986cb;
-    
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.08);
-    }
-  }
-  
-  mat-spinner {
-    ::ng-deep circle {
-      stroke: #7986cb;
-    }
+  .bio-card {
+    margin-bottom: 1rem;
   }
 }
