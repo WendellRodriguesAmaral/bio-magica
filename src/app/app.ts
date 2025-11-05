@@ -9,9 +9,10 @@ import { ThemeService } from './services/theme.service';
   standalone: false
 })
 export class AppComponent implements OnInit {
-  title = 'BioMágica';
+ title = 'BioMágica';
   year = new Date().getFullYear();
   isDarkTheme$: Observable<boolean>;
+  generatedBios: string[] = [];
   
   constructor(private themeService: ThemeService) {
     this.isDarkTheme$ = this.themeService.isDarkTheme$();
@@ -23,5 +24,14 @@ export class AppComponent implements OnInit {
   
   toggleTheme() {
     this.themeService.toggleTheme();
+  }
+
+  onBiosGenerated(bios: any): void {
+    this.generatedBios = bios as any;
+    
+    // Scroll para a seção de resultados
+    setTimeout(() => {
+      document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
   }
 }
