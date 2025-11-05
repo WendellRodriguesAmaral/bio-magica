@@ -1,39 +1,86 @@
-<mat-card class="form-card">
-  <mat-card-header>
-    <mat-card-title>Crie sua bio personalizada</mat-card-title>
-    <mat-card-subtitle>Preencha os campos abaixo para gerar sugestões de bio</mat-card-subtitle>
-  </mat-card-header>
+<form [formGroup]="bioForm" (ngSubmit)="generateBio()">
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>Crie sua bio personalizada</mat-card-title>
+      <mat-card-subtitle>Preencha os campos abaixo para gerar sugestões de bio</mat-card-subtitle>
+    </mat-card-header>
 
-  <mat-card-content>
-    <form class="bio-form">
+    <mat-card-content>
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Seu nome</mat-label>
-        <input matInput placeholder="Ex: Maria Silva">
+        <input matInput formControlName="nome" placeholder="Ex: Maria Silva" [readonly]="isLoading">
         <mat-hint>Como você gostaria de ser chamado(a)</mat-hint>
+        <mat-error *ngIf="nome?.invalid && (nome?.dirty || nome?.touched)">
+          Nome é obrigatório
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Sua profissão ou hobby</mat-label>
-        <input matInput placeholder="Ex: Designer Gráfico ou Fotografia">
+        <input matInput formControlName="profissao" placeholder="Ex: Designer Gráfico ou Fotografia">
         <mat-hint>O que você faz ou gosta</mat-hint>
+        <mat-error *ngIf="profissao?.invalid && (profissao?.dirty || profissao?.touched)">
+          Profissão ou hobby é obrigatório
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Estilo da bio desejada</mat-label>
-        <mat-select>
+        <mat-select formControlName="estilo">
           <mat-option *ngFor="let style of bioStyles" [value]="style.value">
             {{style.viewValue}}
           </mat-option>
         </mat-select>
         <mat-hint>Escolha o tom da sua bio</mat-hint>
+        <mat-error *ngIf="estilo?.invalid && (estilo?.dirty || estilo?.touched)">
+          Estilo é obrigatório
+        </mat-error>
       </mat-form-field>
-    </form>
-  </mat-card-content>
 
-  <mat-card-actions align="end">
-    <button mat-raised-button color="primary" (click)="generateBio()">
-      <mat-icon>auto_awesome</mat-icon>
-      Gerar Bio
-    </button>
-  </mat-card-actions>
-</mat-card>
+
+       <mat-form-field appearance="outline" class="full-width" >
+        <mat-label>Qual o tamanho desejado?</mat-label>
+        <mat-select formControlName="comprimento" >
+          <mat-option *ngFor="let length of bioLengths" [value]="length.value">
+            {{length.viewValue}}
+          </mat-option>
+        </mat-select>
+        <mat-hint>Escolha o tamanho da sua bio</mat-hint>
+        <mat-error *ngIf="comprimento?.invalid && (comprimento?.dirty || comprimento?.touched)">
+          Tamanho da bio é obrigatório
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Quantas opções deseja?</mat-label>
+        <mat-select formControlName="opcoes">
+          <mat-option *ngFor="let options of bioOptions" [value]="options.value">
+            {{options.viewValue}}
+          </mat-option>
+        </mat-select>
+        <mat-hint>Escolha a quantidade de opções de bio que deseja gerar</mat-hint>
+        <mat-error *ngIf="opcoes?.invalid && (opcoes?.dirty || opcoes?.touched)">
+          Número de opções é obrigatório
+        </mat-error>
+      </mat-form-field>
+
+
+
+
+
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button 
+        mat-raised-button 
+        color="primary" 
+        type="submit" 
+        [disabled]="bioForm.invalid || isLoading">
+        <mat-icon *ngIf="!isLoading">auto_awesome</mat-icon>
+        <span *ngIf="!isLoading">Gerar Bio</span>
+        <mat-spinner *ngIf="isLoading" diameter="24"></mat-spinner>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+<div id="results"></div>
