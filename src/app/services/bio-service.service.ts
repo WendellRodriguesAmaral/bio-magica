@@ -4,8 +4,7 @@ import { V2ChatResponse } from 'cohere-ai/api';
 import { Observable, from, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { BioResponse } from '../models/response.modee';
-
-
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,7 @@ export class BioService {
 
   constructor() {
     this.cohereClient = new CohereClientV2({
-      token: '1aJ6W3GX215W17tHQdcIYw2nsiGmEtSM4bRiqwQH'
+      token: environment.TOKEN_COHERE
     });
   }
 

@@ -8,7 +8,6 @@ export class ThemeService {
   private isDarkTheme = new BehaviorSubject<boolean>(false);
   
   constructor() {
-    // Carregar preferência do localStorage se existir
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
       this.isDarkTheme.next(savedTheme === 'dark');
@@ -17,7 +16,6 @@ export class ThemeService {
   
   toggleTheme(): void {
     this.isDarkTheme.next(!this.isDarkTheme.value);
-    // Salvar preferência no localStorage
     localStorage.setItem('theme', this.isDarkTheme.value ? 'dark' : 'light');
   }
   
