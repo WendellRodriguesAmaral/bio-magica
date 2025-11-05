@@ -1,3 +1,10 @@
+:host {
+  display: block;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
 .form-card {
   max-width: 800px;
   margin: 20px auto;
@@ -6,7 +13,7 @@
 
 .full-width {
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
 }
 
 .bio-form {
@@ -15,11 +22,32 @@
   padding: 16px 0;
 }
 
-mat-card-actions {
-  padding: 16px;
+mat-card {
+  margin-bottom: 2rem;
 }
 
-// Estilos específicos para tema escuro
+mat-card-header {
+  margin-bottom: 1rem;
+}
+
+mat-card-actions {
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+button[type="submit"] {
+  min-width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-spinner {
+  margin: 0 auto;
+}
+
+// tema escuro
 :host-context(.dark-theme) {
   .form-card {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
@@ -39,7 +67,7 @@ mat-card-actions {
     }
   }
   
-  // Ajuste para botões no tema escuro
+  // botões no tema escuro
   button[mat-raised-button] {
     &:hover {
       background-color: rgba(255, 255, 255, 0.08);
@@ -47,10 +75,15 @@ mat-card-actions {
   }
 }
 
-// Transições suaves para elementos personalizados
 mat-card-title, 
 mat-card-subtitle, 
 mat-hint,
 button[mat-raised-button] {
   transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  mat-card-actions {
+    justify-content: center;
+  }
 }
