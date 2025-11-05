@@ -1,24 +1,45 @@
-<div class="result-container">
+
+<div id="results" class="results-container" *ngIf="hasBios()">
   <mat-card class="result-header-card">
     <mat-card-header>
-      <mat-card-title>Suas bios personalizadas</mat-card-title>
+      <mat-card-title>Sua(s) bio(s) personalizada(s)</mat-card-title>
       <mat-card-subtitle>Escolha a que mais combina com você</mat-card-subtitle>
     </mat-card-header>
-    
-    <!-- Placeholder para spinner de carregamento (estático) -->
-    <div class="loading-placeholder">
-      <mat-spinner diameter="40" color="accent" *ngIf="false"></mat-spinner>
-    </div>
-    
-    <!-- Placeholder para mensagens de erro/sucesso -->
-    <div class="message-placeholder">
-      <!-- Conteúdo será adicionado dinamicamente em etapas futuras -->
-    </div>
   </mat-card>
 
-  <!-- Cards de resultado -->
-  <div class="bio-results">
-    <mat-card *ngFor="let bio of bioResults" class="bio-card">
+  <div class="bio-list">
+    <mat-card *ngFor="let bio of bios; let i = index" class="bio-card">
+      <mat-card-content>
+        <p class="bio-text">{{ bio }}</p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-icon-button color="primary" (click)="copyBio(bio)" matTooltip="Copiar bio">
+          <mat-icon>content_copy</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
+<div class="no-results" *ngIf="bios && bios.length === 0 && !isbiosGenerated">
+  <mat-card>
+    <mat-card-content>
+      <p>Não foi possível gerar bios. Tente novamente.</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="no-results" *ngIf="isbiosGenerated && bios.length === 0">
+  <mat-card>
+    <mat-card-content>
+      <p>Gere sua bio em poucos segundos e compartilhe com a galera.</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+ <div  *ngIf="!hasBios()" class=" bio-list  bio-list--placeholder">
+   <mat-card *ngFor="let bio of bioResultsPlaceHolder" class="bio-card">
+      EXEMPLO DE BIOGRAFIA GERADA
       <mat-card-content>
         <p class="bio-text">{{ bio.text }}</p>
       </mat-card-content>
@@ -30,4 +51,3 @@
       </mat-card-actions>
     </mat-card>
   </div>
-</div>
